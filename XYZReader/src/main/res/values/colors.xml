@@ -24,4 +24,5 @@
     <color name="colorSecondaryText">#727272</color>
     <color name="colorAccent">#F95226</color>
     <color name="ltgray">#ffe0e0e0</color>
+    <color name="colorBackground">#FAFAFA</color>
 </resources>

@@ -8,7 +8,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:contentInsetStart="83dp"
+        app:contentInsetStart="35dp"
         app:theme="@style/ToolBar"
         android:elevation="8dp">
 
@@ -37,7 +37,7 @@
             android:paddingLeft="@dimen/list_side_margin"
             android:paddingRight="@dimen/list_side_margin"
             android:scrollbarStyle="outsideOverlay"
-            android:background="@color/colorPrimaryLight"/>
+            android:background="@color/colorBackground"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
