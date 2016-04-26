@@ -31,15 +31,18 @@ public class ArticleDetailFragment extends Fragment implements
     private static final String TAG = "ArticleDetailFragment";
 
     public static final String ARG_ITEM_ID = "item_id";
-
     private Cursor mCursor;
     private long mItemId;
     private View mRootView;
-
     private ImageView mPhotoView;
     private TextView mTitle;
     private LinearLayout mTitleContainer;
     private AppBarLayout mAppBarLayout;
+    private static final float PERCENTAGE_TO_SHOW_TITLE  = 0.9f;
+    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
+    private static final int ANIMATION_DURATION = 150;
+    private boolean mIsTheTitleVisible          = false;
+    private boolean mIsTheTitleContainerVisible = true;
 
     public ArticleDetailFragment() {}
 
@@ -61,6 +64,7 @@ public class ArticleDetailFragment extends Fragment implements
         }
 
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -79,16 +83,18 @@ public class ArticleDetailFragment extends Fragment implements
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
-                        .setType("text/plain")
-                        .setText("Some sample text")
-                        .getIntent(), getString(R.string.action_share)));
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT,"I'm reading " + mCursor.getString(ArticleLoader.Query.TITLE) + ". Download xyzReader and you can too!");
+                startActivity(Intent.createChooser(shareIntent,getString(R.string.action_share)));
+
             }
         });
 
         bindViews();
 
-        startAlphaAnimation(mTitle, 0, View.INVISIBLE);
+        startAnimation(mTitle, 0, View.INVISIBLE);
         return mRootView;
     }
 
@@ -175,7 +181,7 @@ public class ArticleDetailFragment extends Fragment implements
 
         mCursor = cursor;
         if (mCursor != null && !mCursor.moveToFirst()) {
-            Log.e(TAG, "Error reading item detail cursor");
+            Log.e(TAG, "Error reading cursor");
             mCursor.close();
             mCursor = null;
         }
@@ -195,25 +201,20 @@ public class ArticleDetailFragment extends Fragment implements
         int maxScroll = appBarLayout.getTotalScrollRange();
         float percentage = (float) Math.abs(offset) / (float) maxScroll;
         handleAlphaOnTitle(percentage);
-        handleToolbarTitleVisibility(percentage);
+        ToolbarTitleVisibility(percentage);
     }
 
-    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
-    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
-    private static final int ALPHA_ANIMATIONS_DURATION              = 400;
 
-    private boolean mIsTheTitleVisible          = false;
-    private boolean mIsTheTitleContainerVisible = true;
 
-    private void handleToolbarTitleVisibility(float percentage) {
-        if (percentage >= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) {
+    private void ToolbarTitleVisibility(float percentage) {
+        if (percentage >= PERCENTAGE_TO_SHOW_TITLE) {
             if(!mIsTheTitleVisible) {
-                startAlphaAnimation(mTitle, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+                startAnimation(mTitle, ANIMATION_DURATION, View.VISIBLE);
                 mIsTheTitleVisible = true;
             }
         } else {
             if (mIsTheTitleVisible) {
-                startAlphaAnimation(mTitle, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+                startAnimation(mTitle, ANIMATION_DURATION, View.INVISIBLE);
                 mIsTheTitleVisible = false;
             }
         }
@@ -222,20 +223,20 @@ public class ArticleDetailFragment extends Fragment implements
     private void handleAlphaOnTitle(float percentage) {
         if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
             if(mIsTheTitleContainerVisible) {
-                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+                startAnimation(mTitleContainer, ANIMATION_DURATION, View.INVISIBLE);
                 mIsTheTitleContainerVisible = false;
             }
 
         } else {
 
             if (!mIsTheTitleContainerVisible) {
-                startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+                startAnimation(mTitleContainer, ANIMATION_DURATION, View.VISIBLE);
                 mIsTheTitleContainerVisible = true;
             }
         }
     }
 
-    public static void startAlphaAnimation (View v, long duration, int visibility) {
+    public static void startAnimation (View v, long duration, int visibility) {
         AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
                 ? new AlphaAnimation(0f, 1f)
                 : new AlphaAnimation(1f, 0f);

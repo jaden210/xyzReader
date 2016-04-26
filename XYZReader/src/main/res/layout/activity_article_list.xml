@@ -8,9 +8,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:contentInsetStart="72dp"
-        app:layout_collapseMode="pin"
-        app:theme="@style/ToolBar">
+        app:contentInsetStart="83dp"
+        app:theme="@style/ToolBar"
+        android:elevation="8dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="?actionBarSize"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
         <android.support.v7.widget.RecyclerView

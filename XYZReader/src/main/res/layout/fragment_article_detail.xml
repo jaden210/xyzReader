@@ -3,6 +3,7 @@
     android:id="@+id/detail_frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     >
 
 
@@ -82,6 +83,8 @@
                 app:contentInsetStart="10dp"
                 app:layout_collapseMode="pin">
 
+
+
                 <TextView
                     android:id="@+id/main_title"
                     android:layout_width="match_parent"
@@ -89,7 +92,8 @@
                     android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
                     android:textColor="@color/colorPrimaryLight"
                     android:textStyle="bold"
-                    android:text="@string/welcome_xyz_reader"/>
+                    android:text="@string/welcome_xyz_reader"
+                    android:textSize="18dp"/>
 
 
             </android.support.v7.widget.Toolbar>
@@ -99,29 +103,25 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimaryLight"
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:fitsSystemWindows="true"
-        android:layout_gravity="fill_vertical"
-        android:layout_marginBottom="?attr/actionBarSize">
+        android:fitsSystemWindows="true">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/article_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="26dp"
+                android:paddingBottom="?attr/actionBarSize"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="40dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorPrimaryText" />
-        </android.support.v7.widget.CardView>
+
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
