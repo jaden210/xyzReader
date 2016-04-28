@@ -4,7 +4,7 @@
     api-level="21"
     density="420dpi"
     format="7"
-    timestamp="143921317092625" >
+    timestamp="52308902622287" >
 
     <task
         name="javac"
@@ -23,32 +23,12 @@
         location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/resources-debug.ap_"
         type="RESOURCES" />
 
-    <build timestamp="140186376719938" >
+    <build timestamp="51513588575797" >
         <artifact
             location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/outputs/apk/XYZReader-debug.apk"
             type="MAIN" />
     </build>
-    <build
-        timestamp="140468506393773"
-        verifier="FIELD_TYPE_CHANGE" >
-        <artifact
-            location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
-            type="DEX" />
-    </build>
-    <build
-        timestamp="141873660769169"
-        verifier="R_CLASS_CHANGE" >
-        <artifact
-            location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
-            type="DEX" />
-        <artifact
-            location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="143921317092625" >
+    <build timestamp="52308902622287" >
         <artifact
             location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/resources-debug.ap_"
             type="RESOURCES" />
