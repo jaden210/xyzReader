@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="21"
-    density="420dpi"
+    abi="armeabi-v7a,armeabi"
+    api-level="22"
+    density="xxxhdpi"
     format="7"
-    timestamp="52308902622287" >
+    timestamp="55278107974063" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="177" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="76" />
     <task
         name="verifier"
-        duration="0" />
+        duration="23" />
 
     <artifact
-        location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/resources-debug.ap_"
-        type="RESOURCES" />
+        location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/outputs/apk/XYZReader-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="51513588575797" >
+    <build timestamp="55278107974063" >
         <artifact
             location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/outputs/apk/XYZReader-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="52308902622287" >
-        <artifact
-            location="/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/resources-debug.ap_"
-            type="RESOURCES" />
     </build>
 
 </instant-run>

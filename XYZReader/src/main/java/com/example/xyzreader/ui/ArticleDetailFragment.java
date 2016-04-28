@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.ShareCompat;
@@ -27,7 +28,7 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 
 public class ArticleDetailFragment extends Fragment implements
-        LoaderManager.LoaderCallbacks<Cursor>, AppBarLayout.OnOffsetChangedListener{
+        LoaderManager.LoaderCallbacks<Cursor>{
     private static final String TAG = "ArticleDetailFragment";
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -35,15 +36,6 @@ public class ArticleDetailFragment extends Fragment implements
     private long mItemId;
     private View mRootView;
     private ImageView mPhotoView;
-    private TextView mTitle;
-    private LinearLayout mTitleContainer;
-    private AppBarLayout mAppBarLayout;
-    private static final float PERCENTAGE_TO_SHOW_TITLE  = 0.9f;
-    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
-    private static final int ANIMATION_DURATION = 150;
-    private boolean mIsTheTitleVisible          = false;
-    private boolean mIsTheTitleContainerVisible = true;
-
     public ArticleDetailFragment() {}
 
     public static ArticleDetailFragment newInstance(long itemId) {
@@ -94,20 +86,20 @@ public class ArticleDetailFragment extends Fragment implements
 
         bindViews();
 
-        startAnimation(mTitle, 0, View.INVISIBLE);
+
         return mRootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mAppBarLayout.addOnOffsetChangedListener(this);
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mAppBarLayout.removeOnOffsetChangedListener(this);
+
     }
 
 
@@ -118,21 +110,14 @@ public class ArticleDetailFragment extends Fragment implements
 
         TextView authDateView = (TextView) mRootView.findViewById(R.id.auth_date);
         authDateView.setMovementMethod(new LinkMovementMethod());
-
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        TextView titleLine = (TextView) mRootView.findViewById(R.id.article_titleline);
-
-        mTitle = (TextView) mRootView.findViewById(R.id.main_title);
-        mAppBarLayout = (AppBarLayout) mRootView.findViewById(R.id.appbar_layout);
-        mAppBarLayout.addOnOffsetChangedListener(this);
-        mTitleContainer = (LinearLayout) mRootView.findViewById(R.id.main_linearlayout_title);
+        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) mRootView.findViewById(R.id.main_collapsing);
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
-            mTitle.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-            titleLine.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+
             authDateView.setText(Html.fromHtml(
                     DateUtils.getRelativeTimeSpanString(
                             mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
@@ -141,7 +126,7 @@ public class ArticleDetailFragment extends Fragment implements
                             + " by "
                             + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
-
+            ctl.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
             ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
                         @Override
@@ -159,7 +144,7 @@ public class ArticleDetailFragment extends Fragment implements
                     });
         } else {
             mRootView.setVisibility(View.GONE);
-            mTitle.setText("");
+
             authDateView.setText("");
             bodyView.setText("");
         }
@@ -195,55 +180,5 @@ public class ArticleDetailFragment extends Fragment implements
         bindViews();
     }
 
-    // Animation on title bar
-    @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
-        int maxScroll = appBarLayout.getTotalScrollRange();
-        float percentage = (float) Math.abs(offset) / (float) maxScroll;
-        handleAlphaOnTitle(percentage);
-        ToolbarTitleVisibility(percentage);
-    }
-
-
-
-    private void ToolbarTitleVisibility(float percentage) {
-        if (percentage >= PERCENTAGE_TO_SHOW_TITLE) {
-            if(!mIsTheTitleVisible) {
-                startAnimation(mTitle, ANIMATION_DURATION, View.VISIBLE);
-                mIsTheTitleVisible = true;
-            }
-        } else {
-            if (mIsTheTitleVisible) {
-                startAnimation(mTitle, ANIMATION_DURATION, View.INVISIBLE);
-                mIsTheTitleVisible = false;
-            }
-        }
-    }
-
-    private void handleAlphaOnTitle(float percentage) {
-        if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
-            if(mIsTheTitleContainerVisible) {
-                startAnimation(mTitleContainer, ANIMATION_DURATION, View.INVISIBLE);
-                mIsTheTitleContainerVisible = false;
-            }
-
-        } else {
-
-            if (!mIsTheTitleContainerVisible) {
-                startAnimation(mTitleContainer, ANIMATION_DURATION, View.VISIBLE);
-                mIsTheTitleContainerVisible = true;
-            }
-        }
-    }
-
-    public static void startAnimation (View v, long duration, int visibility) {
-        AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
-                ? new AlphaAnimation(0f, 1f)
-                : new AlphaAnimation(1f, 0f);
-
-        alphaAnimation.setDuration(duration);
-        alphaAnimation.setFillAfter(true);
-        v.startAnimation(alphaAnimation);
-    }
 
 }
