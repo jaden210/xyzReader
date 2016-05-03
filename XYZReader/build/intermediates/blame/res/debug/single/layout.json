@@ -24,12 +24,12 @@
         "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_subheader.xml"
     },
     {
-        "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
-        "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_media_action.xml"
-    },
-    {
         "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
         "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_media_action.xml"
     },
     {
         "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
@@ -148,12 +148,12 @@
         "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/notification_template_part_time.xml"
     },
     {
-        "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
-        "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_separator.xml"
-    },
-    {
         "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
         "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
+        "source": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/exploded-aar/com.android.support/design/23.3.0/res/layout/design_navigation_item_separator.xml"
     },
     {
         "merged": "/Users/jaden/AndroidStudioProjects/xyzReader/XYZReader/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",

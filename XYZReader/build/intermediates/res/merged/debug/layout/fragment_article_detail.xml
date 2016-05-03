@@ -32,7 +32,8 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                android:fitsSystemWindows="true" />
+                android:fitsSystemWindows="true"
+                android:transitionName="photo"/>
 
             <TextView
                 android:id="@+id/auth_date"
